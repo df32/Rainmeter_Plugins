@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Internet.cpp" />
+    <ClCompile Include="Lyrics.cpp" />
+    <ClCompile Include="ttlrc.cpp" />
+    <ClCompile Include="StringUtil.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Internet.h" />
+    <ClInclude Include="Lyrics.h" />
+    <ClInclude Include="StdAfx.h" />
+    <ClInclude Include="StringUtil.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ttlrc.rc" />
+  </ItemGroup>
+</Project>

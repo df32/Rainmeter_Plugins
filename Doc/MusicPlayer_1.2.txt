@@ -1,0 +1,146 @@
+//MusicPlayer.dll 
+// v1.2.0
+
+
+获取酷我、酷狗、QQ音乐、百度音乐的播放信息并控制其播放。
+
+标题与艺术家，从窗口标题获得（因此有时候可能会截取错误）
+播放控制，通过发送窗口按键或全局按键实现
+
+插件每500毫秒获取一次窗口标题，
+当程序关闭时每5000毫秒检查一次程序是否开启。
+
+
+
+//选项
+
+	PlayerName
+	播放器类型。有效值包括：KwMusic、KGMusic、QQMusic、BaiduMusic。
+
+	PlayerType	
+	返回信息类型。有效值包括：Track、Title、Artist、Cover、PlayerPath、Status。
+	
+	PlayerPath	
+	播放器地址。一般不需要设置。插件会自动从注册表或播放器进程中获得。
+	
+	TrackChangeAction	
+	变轨动作，当窗口标题变化时执行的动作。
+
+
+
+//PlayerType选项
+
+	Track
+	窗口标题移除播放器名字的部分。
+	对于KwMusic显示“%T-%A”格式的信息，
+	对于QQMusic与BaiduMusic显示“%T - %A”格式的信息，
+	对于KGMusic显示“%F”格式的信息。
+	在播放器未播放时则显示“百度音乐”或“QQ音乐，音乐你的生活”之类的窗口标题
+
+	Title / Artist
+	音乐标题和艺术家。
+	当音乐标题包含“-”时可能会导致分割信息错误。
+	对于KGMusic来说，由于其窗口标题是文件名而不包含标题与艺术家，因此分割格外容易出错。
+	
+	PlayerPath
+	返回播放器主程序的地址。
+	
+	Cover
+	返回封面。只对酷狗与QQ音乐有效。
+	
+	Status
+	播放器是否启动（1-是 0-否）。
+
+
+
+//!CommandMeasure指令参数
+
+	播放控制
+PlayerPause		播放暂停
+Previous		上一首
+Next			下一首
+Stop			停止播放
+
+	热键控制
+VolumeUp		增大音量
+VolumeDown		减小音量
+VolumeMute		静音（QQMusic不支持）
+MiniMode		迷你模式（KGMusic、QQMusic不支持）
+HideToTray		隐藏到托盘（KGMusic不支持）
+
+	更多热键控制
+DesktopLyricShow	显示桌面歌词（KwMusic与BaiduMusic不支持）
+DesktopLyricLock	锁定桌面歌词（KwMusic不支持）
+MyFavorate			添加到我喜欢（只有QQMusic支持）
+Reverse				快退（KwMusic与QQMusic不支持）
+Forward				快进（KwMusic与QQMusic不支持）
+
+注：对于按键设置见后面的附表与说明
+
+	窗口控制
+Open\OpenPlayer		打开播放器
+Close\ClosePlayer	关闭播放器
+Minimize			窗口最小化
+Restore				窗口还原
+
+注：除Open外，BaiduMusic不支持其他三个命令；
+　　窗口的Minimize与Restore会和MiniMode以及HideToTray冲突。
+
+
+
+
+//程序版本
+
+酷我音乐：v6.2.1.1_UG15; V7.7.0.1_BCS9
+酷狗音乐：7.6.25.15560
+ＱＱ音乐：11.11.2987.0731
+百度音乐：9.0.8.8
+
+
+
+//已知问题
+
+插件运行不稳定：
+当在同一文件夹下的包含了多个使用了MusicPlayer.dll的皮肤，且其PlayerName的设置各不相同，则在这些皮肤间切换时，MusicPlayer.dll可能会崩溃。
+
+
+
+//参考与鸣谢
+
+RM的NowPlaying.dll
+IZZZZZI的KgMusic.dll
+
+
+
+//2014/8/23
+//风飏（d.f.32）
+
+
+
+//附：各个指令对应程序的按键
+
+				酷我		酷狗		QQ音乐		百度
+
+播放暂停		{F5}				MEDIA_PLAY_PAUSE
+上一首			^{LEFT}				MEDIA_PREV_TRACK
+下一首			^{RIGHT}			MEDIA_NEXT_TRACK
+停止播放		{F6}					MEDIA_STOP
+
+增大音量		^{UP}		%{UP}		^%{UP}		^%{UP}
+减小音量		^{DOWN}		%{DOWN}		^%{DOWN}	^%{DOWN}
+静音			^S			^%S			(不支持)	^%S
+迷你模式		^M			(不支持)	(不支持)	^%M
+最小化到托盘	^H			(不支持)	^%Q			^%W
+
+
+显示桌面歌词	(不支持)	^%D			^%W			(不支持)
+解锁桌面歌词	(不支持)	^%E			^%E			^%E
+快退			(不支持)	^+{LEFT}	(不支持)	^%{F7}
+快进			(不支持)	^+{RIGHT}	(不支持)	^%{F8}
+添加到我喜欢	(不支持)	(不支持)	^%V			(不支持)
+
+（注：^ - Ctrl; + - Shift; % - Alt）
+
+插件通过发送按键来控制播放器，因此播放器应当保持正确的按键设置（默认按键）。
+以上除了酷我发送的是窗口按键以外，其他全部为全局快捷键，需要开启全局热键的设置。
+其中Media_Play_Pause等四个按键为多媒体热键，不需要另外设置。

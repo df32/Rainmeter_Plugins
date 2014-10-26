@@ -31,6 +31,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "KwMusic", "KwMusic\KwMusic.
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "MusicPlayer", "MusicPlayer\MusicPlayer.vcxproj", "{D34519ED-88BD-4241-BB3A-3F1BBB57F721}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "AnimateWindow", "AnimateWindow\AnimateWindow.vcxproj", "{D9F094CA-F090-47A2-983A-C314587258F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Mixed Platforms = Debug|Mixed Platforms
@@ -170,6 +172,16 @@ Global
 		{D34519ED-88BD-4241-BB3A-3F1BBB57F721}.Release|Win32.Build.0 = Release|Win32
 		{D34519ED-88BD-4241-BB3A-3F1BBB57F721}.Release|x64.ActiveCfg = Release|x64
 		{D34519ED-88BD-4241-BB3A-3F1BBB57F721}.Release|x64.Build.0 = Release|x64
+		{D9F094CA-F090-47A2-983A-C314587258F7}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
+		{D9F094CA-F090-47A2-983A-C314587258F7}.Debug|Mixed Platforms.Build.0 = Debug|Win32
+		{D9F094CA-F090-47A2-983A-C314587258F7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D9F094CA-F090-47A2-983A-C314587258F7}.Debug|Win32.Build.0 = Debug|Win32
+		{D9F094CA-F090-47A2-983A-C314587258F7}.Debug|x64.ActiveCfg = Debug|Win32
+		{D9F094CA-F090-47A2-983A-C314587258F7}.Release|Mixed Platforms.ActiveCfg = Release|Win32
+		{D9F094CA-F090-47A2-983A-C314587258F7}.Release|Mixed Platforms.Build.0 = Release|Win32
+		{D9F094CA-F090-47A2-983A-C314587258F7}.Release|Win32.ActiveCfg = Release|Win32
+		{D9F094CA-F090-47A2-983A-C314587258F7}.Release|Win32.Build.0 = Release|Win32
+		{D9F094CA-F090-47A2-983A-C314587258F7}.Release|x64.ActiveCfg = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

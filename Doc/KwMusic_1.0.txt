@@ -1,0 +1,98 @@
+//KwMusic.dll 
+// v0.1.0
+
+
+获取酷我音乐播放信息并控制播放。
+
+标题与艺术家，从窗口标题获得（因此有时候可能会截取错误）
+程序地址，从窗口句柄或注册表或PlayerPath选项获得
+播放控制，通过发送窗口按键消息实现
+
+注意插件创建了独立的线程用于每500ms获取一次窗口标题，
+当程序关闭时将每5s检查一次程序是否开启。
+
+
+
+//选项
+
+	PlayerType	返回信息类型
+	PlayerPath	播放器地址
+	TrackChangeAction	变轨动作（窗口标题变化时。标题空与窗口不存在等同）
+
+
+//PlayerType选项
+
+有效值
+
+	TitleArtist	窗口标题移除“-酷我音乐 ”的部分
+	Title		音乐标题
+	Artist		艺术家
+	PlayerPath	播放器地址
+	Status		播放器是否启动（1-是 0-否）
+
+
+//关于播放器地址
+
+PlayerPath值有三个来源：PlayerPath选项、播放器进程、注册表HKEY_CLASSES_ROOT\kuwo。
+·Measure加载时读取PlayerPath选项，单独储存，多个Measure间不共享。
+·播放器启动时获取程序地址，作为全局。
+·当触发Open指令，且前两者为空时，从注册表获取程序地址，作为全局。
+
+PlayerType=PlayerPath优先返回全局PlayerPath。
+Open指令触发时优先使用PlayerPath选项。
+
+
+
+
+//!CommandMeasure指令
+
+;窗口按键消息
+PlayerPause
+Stop
+VolumeMute
+Previous
+Next
+VolumeUp
+VolumeDown
+MiniMode
+Hide
+
+;窗口消息
+Minimize
+Restore
+Close
+
+;其他
+Open
+
+
+//酷我音乐
+
+版本：	v6.2.1.1_UG15
+发布：	2012.12.20
+程序：	KwMusic.exe
+标题：	<Title>-<Artist>-酷我 
+类名：	kwmusicmaindlg
+
+
+//参考
+
+RM的NowPlaying.dll
+IZZZZZI的KgMusic.dll
+
+
+
+
+风飏
+2014/8/18
+
+
+
+//更新日志
+
+1.0.0
+
+修改了控制播放的方式，现在全部使用播放器的窗口按键
+修改了发送关闭播放器的方式
+
+

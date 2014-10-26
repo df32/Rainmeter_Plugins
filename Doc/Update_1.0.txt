@@ -1,0 +1,68 @@
+	Update.dll
+
+Plugin=Update.dll用于创建一个新的线程，在这个线程中每隔一段时间便更新指定的Measure与Meter。这个插件用来实现皮肤局部的更新频率高于皮肤整体更新频率，以节省有动画效果的皮肤占用的系统资源。
+
+
+	信息
+
+文件说明：Create a new Update Thread
+文件版本：1.0.0.0
+作者　　：风飏（d.f.）
+文件大小：18.0 KB (32-bit);21.0 KB (64-bit);
+最后更新：2014/7/18
+
+
+	选项
+
+Update					默认值 100
+	更新间隔，单位毫秒。（10~10000ms）
+Measures
+	要更新的Measure。使用空格或竖线分隔，下同。
+MeasureGroup
+	要更新的Measure组。
+Meters
+	要更新的Meter。
+MeterGroup
+	要更新的Meter组。
+RedrawSkin				默认值 2
+	是否重绘皮肤。0 - 否，1 - 是，2 - 若有Meter更新则是。
+UpdateSkin				默认值 0
+	是否更新整个皮肤。0 - 否，1 - 是。
+StartOnLoad				默认值 0
+	是否在皮肤加载后即开始更新。
+	
+	
+	Bang指令
+
+Start
+	开始更新线程。若线程尚未结束，则先终止原线程。插件将从零重新计数。
+Stop
+	结束更新线程。插件将停止计数。
+Terminate
+	强行终止更新线程。插件计数器将归零。
+
+
+	返回值
+
+数值
+	插件将返回当前更新的次数（一个计数器）。
+
+
+	注意
+
+更新线程的执行顺序为：
+	判断是否已命令结束；
+	计数器++；
+	!UpdateMeasure；
+	!UpdateMeasureGroup；
+	!UpdateMeter；
+	!UpdateMeterGroup；
+	!Redraw；
+	!Update；
+	判断是否已命令结束；
+	休止一个更新间隔；
+	循环到第一步。
+
+当设定了不存在的Measure或Meter，且Update<100时，Rainmeter可能会因为过于频繁的输出错误信息而崩溃。
+
+不支持动态变量。
